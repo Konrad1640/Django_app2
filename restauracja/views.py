@@ -3,6 +3,11 @@ from .models import Dish, Reservation, Review
 from .forms import DishSearchForm, DishForm
 from django.urls import reverse
 
+def user_menu(request):
+    dishes = Dish.objects.all()
+    return render(request, 'user_menu.html', {'dishes': dishes})
+
+
 def delete_dish(request, dish_id):
     dish = get_object_or_404(Dish, id=dish_id)
     if request.method == "POST":

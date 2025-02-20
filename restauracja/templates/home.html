@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,24 +7,78 @@
     <title>Restauracja - Strona Główna</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body class="bg-light">
 
     <div class="container text-center mt-5">
-        <h1 class="mb-4">Witamy w naszej restauracji!</h1>
+        <h1 class="mb-4 fade-in">Witamy w naszej restauracji!</h1>
+
+        <!-- Alert powitalny -->
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Cieszymy się, że jesteś z nami! Sprawdź nasze <strong>nowe dania</strong>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
         <!-- Nawigacja -->
         <nav class="mb-4">
+            <a href="{% url 'user_menu' %}" class="btn btn-info">Menu Użytkownika</a>
             <a href="{% url 'menu' %}" class="btn btn-primary mx-2">Menu</a>
-            <a href="{% url 'reservations' %}" class="btn btn-success mx-2">Rezerwacje</a>
+            <a href="#" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#reservationModal">Rezerwacje</a>
             <a href="{% url 'reviews' %}" class="btn btn-warning mx-2">Opinie</a>
         </nav>
 
         <p class="text-muted">Zapraszamy do zapoznania się z naszym menu i rezerwacji stolików!</p>
     </div>
 
-    <!-- Bootstrap JS (opcjonalnie, jeśli potrzebujesz interaktywnych komponentów) -->
+    <!-- Modal rezerwacji -->
+    <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reservationModalLabel">Zarezerwuj stolik</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Imię i nazwisko</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Data</label>
+                            <input type="datetime-local" class="form-control" id="date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="guests" class="form-label">Liczba gości</label>
+                            <input type="number" class="form-control" id="guests" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Zarezerwuj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'scripts.js' %}"></script>
+
+    <script>
+        // Animacja po załadowaniu strony
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".fade-in").classList.add("show");
+        });
+
+        // Dodanie obsługi modala rezerwacji
+        document.querySelector("#reservationModal form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Dziękujemy za rezerwację! Wkrótce się z Tobą skontaktujemy.");
+            var modal = bootstrap.Modal.getInstance(document.getElementById('reservationModal'));
+            modal.hide();
+        });
+    </script>
+
 </body>
 </html>
-
