@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Nasze Menu</h1>
+    <ul>
+        {% for dish in dishes %}
+            <li>
+                <strong>{{ dish.name }}</strong> - {{ dish.price }} PLN
+                <p>{{ dish.description }}</p>
+                {% if dish.image %}
+                    <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="150">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Powrót do strony głównej</a>
+</body>
+</html>

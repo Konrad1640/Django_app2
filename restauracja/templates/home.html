@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restauracja - Strona Główna</title>
+</head>
+<body>
+    <h1>Witamy w naszej restauracji!</h1>
+    <nav>
+        <a href="{% url 'menu' %}">Menu</a> |
+        <a href="{% url 'reservations' %}">Rezerwacje</a> |
+        <a href="{% url 'reviews' %}">Opinie</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opinie</title>
+</head>
+<body>
+    <h1>Opinie klientów</h1>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user.username }}</strong> ocenił <strong>{{ review.dish.name }}</strong> na {{ review.rating }}/5
+                {% if review.comment %}
+                    <p>Komentarz: {{ review.comment }}</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Powrót do strony głównej</a>
+</body>
+</html>
