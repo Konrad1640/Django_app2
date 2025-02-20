@@ -1,0 +1,18 @@
+<!-- restauracja/templates/restauracja/add_dish.html -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Danie</title>
+</head>
+<body>
+    <h1>Dodaj Nowe Danie</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderujemy formularz -->
+        <button type="submit">Dodaj Danie</button>
+    </form>
+    <a href="{% url 'menu' %}">Powrót do menu</a>
+</body>
+</html>

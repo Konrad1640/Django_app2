@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restauracja - Strona Główna</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Witamy w naszej restauracji!</h1>
-    <nav>
-        <a href="{% url 'menu' %}">Menu</a> |
-        <a href="{% url 'reservations' %}">Rezerwacje</a> |
-        <a href="{% url 'reviews' %}">Opinie</a>
-    </nav>
+<body class="bg-light">
+
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Witamy w naszej restauracji!</h1>
+
+        <!-- Nawigacja -->
+        <nav class="mb-4">
+            <a href="{% url 'menu' %}" class="btn btn-primary mx-2">Menu</a>
+            <a href="{% url 'reservations' %}" class="btn btn-success mx-2">Rezerwacje</a>
+            <a href="{% url 'reviews' %}" class="btn btn-warning mx-2">Opinie</a>
+        </nav>
+
+        <p class="text-muted">Zapraszamy do zapoznania się z naszym menu i rezerwacji stolików!</p>
+    </div>
+
+    <!-- Bootstrap JS (opcjonalnie, jeśli potrzebujesz interaktywnych komponentów) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
