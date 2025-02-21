@@ -26,12 +26,10 @@ class Reservation(models.Model):
         return f"Reservation by {self.user.username} on {self.date}"
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Allow NULL and blank values
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
-    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
-    comment = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    rating = models.IntegerField()
+    comment = models.TextField(default='No comment provided')
 
     def __str__(self):
-        return f"Review by {self.user.username} for {self.dish.name}"
+        return f"{self.user.username} - {self.dish.name}" if self.user else f"Anonymous - {self.dish.name}"
